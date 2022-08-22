@@ -18,5 +18,8 @@
   "homepage": "https://github.com/alessandrobologna/parameter-store-replicator#readme",
   "dependencies": {
     "aws-xray-sdk-core": "^3.3.3"
+  },
+  "devDependencies": {
+    "serverless-plugin-diff": "^3.0.0"
   }
 }

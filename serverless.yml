@@ -19,9 +19,14 @@ functions:
   replicate:
     handler: handler.replicate
     events:
+    # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html#ssm_event_types
       - cloudwatchEvent:
           event:
             source:
               - "aws.ssm"
             detail-type:
               - "Parameter Store Change"
+
+
+plugins:
+  - serverless-plugin-diff
