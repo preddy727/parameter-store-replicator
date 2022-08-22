@@ -19,6 +19,7 @@ functions:
   replicate:
     handler: handler.replicate
     events:
+    # for sample events see
     # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html#ssm_event_types
       - cloudwatchEvent:
           event:
@@ -26,7 +27,10 @@ functions:
               - "aws.ssm"
             detail-type:
               - "Parameter Store Change"
-
+            # ignores params that start with github-actions
+            detail:
+              name:
+                - { "anything-but": { "prefix": "github-actions" } }
 
 plugins:
   - serverless-plugin-diff
