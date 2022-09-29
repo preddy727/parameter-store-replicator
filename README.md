@@ -16,13 +16,14 @@ $ npm install -g serverless
 After you have it installed, just deploy your function to the main region, specifying as target the replication region. For instance, to replicate from `us-east-1` to `us-west-2`:
 
 ```bash
+$ serverless plugin install -n serverless-plugin-diff
 $ sls deploy --region us-east-1 --param="target-region=eu-west-1"
 ```
 
 You can establish two way replication by deploying the same lambda to the target region:
 
 ```bash
-$ sls deploy --region eu-west-1 --target-region us-east-1
+$ sls deploy --region eu-west-1 --param="target-region-us-east-1"
 ```
 
 If you are using two way replication, there's logic in place to avoid the "ping pong" effect, where a region replicating to another causes the replication to happen in the other direction. Currenlty, the logic is just based on value and type for a given parameter. If they already exist in the target region, and their value match, replication is not performed.
